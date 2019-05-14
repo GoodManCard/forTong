@@ -1,4 +1,4 @@
-setwd("/home/chao/lab/friend/Tong/")
+setwd("~/lab/friend/Tong/")
 getwd()
 
 data_list = list.files("./aws_mins/")
