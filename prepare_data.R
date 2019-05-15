@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 setwd("~/lab/friends/forTong/")
+=======
+setwd("~/lab/friend/forTong/")
+>>>>>>> 5730e4c40ad1abad7cd84b0dc8db6e7b7afd9070
 getwd()
 
 data_list = list.files("./aws_mins/")
