@@ -1,4 +1,4 @@
-setwd("/home/chao/lab/friend/Tong/")
+setwd("~/lab/friends/forTong/")
 getwd()
 
 data_list = list.files("./aws_mins/")
@@ -16,7 +16,9 @@ for (i in 1:n){
 
     # get col data
 
-    time_now <- substr(data_tmp$new_title, 1, 4)
+    time_now_hour <- substr(data_tmp$new_title, 1, 2)
+    time_now_mins <- substr(data_tmp$new_title, 3, 4)
+    time_now = paste(time_now_hour, time_now_mins, sep = ":")
 
 
     wd_avg_2mins <- substr(data_tmp$new_title, 5, 8)
@@ -78,7 +80,7 @@ for (i in 1:n){
     frozen_soil_depth <- substr(data_tmp$new_title, 201, 204)
     frequency_lightning <- substr(data_tmp$new_title, 205, 208)
     sign_of_data_quality <- substr(data_tmp$new_title, 209, 256)
-    crlf <- substr(data_tmp$new_title, 257, 258)
+    # crlf <- substr(data_tmp$new_title, 257, 258)
 
     
     new_data <- data.frame(time_now, 
@@ -130,8 +132,7 @@ for (i in 1:n){
                            ice_accretion_on_wires,
                            frozen_soil_depth,
                            frequency_lightning,
-                           sign_of_data_quality,
-                           crlf)
+                           sign_of_data_quality)
 
     write.csv(new_data, file =new_name, row.names = F)
 
