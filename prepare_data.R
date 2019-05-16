@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 setwd("~/lab/friends/forTong/")
-=======
-setwd("~/lab/friend/forTong/")
->>>>>>> 5730e4c40ad1abad7cd84b0dc8db6e7b7afd9070
+
 getwd()
 
 data_list = list.files("./aws_mins/")
@@ -16,6 +14,16 @@ for (i in 1:n){
     names(data_tmp) <- c("new_title")
 
     new_name = data_new_name[i]
+    
+    date_str = unlist(strsplit(data_dir[i], split = "_"))[6]
+    date_str = unlist(strsplit(date_str, split = ".", fixed = TRUE))[1]
+    
+    year = substr(date_str, 1, 4)
+    month = substr(date_str, 5, 6)
+    day = substr(date_str, 7, 8)
+    
+    date_str = paste(year, month, day, sep = "-")
+    
 
 
     # get col data
@@ -23,6 +31,8 @@ for (i in 1:n){
     time_now_hour <- substr(data_tmp$new_title, 1, 2)
     time_now_mins <- substr(data_tmp$new_title, 3, 4)
     time_now = paste(time_now_hour, time_now_mins, sep = ":")
+    
+    time_now = paste(date_str, time_now, sep = " ")
 
 
     wd_avg_2mins <- substr(data_tmp$new_title, 5, 8)

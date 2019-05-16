@@ -19,7 +19,7 @@ features = ["time_now", "wd_avg_2mins", "ws_avg_2mins", "wd_avg_10mins", "ws_avg
 
 def toDateTime(x):
     '''type(x) is str'''
-    tmp_date_time = datetime.datetime.strptime(str(x), "%Y%m%d %H:%M")
+    tmp_date_time = datetime.datetime.strptime(str(x), "%Y-%m-%d %H:%M")
     return tmp_date_time
 
 
@@ -29,15 +29,13 @@ for i in tqdm(range(len(data_list))):
 
     # correct the col---"time_now"
     date_now_str = data_list[i].split(".")[0].split("_")[-1]
-    data_tmp["time_now"].astype("object")
-    data_tmp["time_now"] = data_tmp["time_now"].apply(lambda x:date_now_str+" "+x)
-    data_tmp["time_now"].astype("object")
-    '''
+    date_now_str = date_now_str[0:4]+"-"+date_now_str[4:6]+"-"+date_now_str[6:]
+    
     delta_date = datetime.timedelta(days=1)
     lower_time = toDateTime(date_now_str+" "+"20:00")
 
-    data_tmp["time_now"] = data_tmp["time_now"].apply(lambda x:toDateTime(x)-delta_date if toDateTime(x) > lower_time else toDateTime(x))
-    '''
+    data_tmp["time_now"] = data_tmp["time_now"].apply(lambda x:toDateTime(x)-delta_date if x[-2:] != "--" and toDateTime(x) > lower_time else x)
+    
     # new dataframe
     new_data_tmp = pd.DataFrame()
     for col in features:
