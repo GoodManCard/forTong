@@ -33,7 +33,7 @@ tree
 ```
 
 ```sh
-STEP 0: pip install -y numpy, pandas, tqdm    # requirements
+STEP 0:  pip install -y numpy, pandas, tqdm    # requirements
 STEP 1:  run prepare_data.R
 STEP 2:  python clean_data.py                 # to correct "now_time"
 ...
